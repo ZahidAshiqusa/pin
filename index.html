@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Neon Buttons + PIN Lock</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="brand">
+      <h1>NeonUI</h1>
+      <p class="subtitle">4 animated neon buttons — PIN protected</p>
+    </header>
+
+    <section class="buttons-grid" id="protected-area">
+      <!-- Replace href="#" with your real links -->
+      <a class="neon-btn neon-1" href="#" data-label="Link 1">Link 1</a>
+      <a class="neon-btn neon-2" href="#" data-label="Link 2">Link 2</a>
+      <a class="neon-btn neon-3" href="#" data-label="Link 3">Link 3</a>
+      <a class="neon-btn neon-4" href="#" data-label="Link 4">Link 4</a>
+    </section>
+  </main>
+
+  <!-- PIN overlay -->
+  <div id="pin-overlay" class="overlay active" aria-hidden="false">
+    <div class="lock-card" role="dialog" aria-label="PIN keypad">
+      <div class="lock-header">
+        <div class="lock-title">Enter PIN</div>
+        <div class="lock-sub">Protected area — enter PIN to unlock</div>
+      </div>
+
+      <div class="pin-display" id="pin-display" aria-hidden="true">
+        <span class="dot" id="d1"></span>
+        <span class="dot" id="d2"></span>
+        <span class="dot" id="d3"></span>
+        <span class="dot" id="d4"></span>
+      </div>
+
+      <div class="keypad" id="keypad">
+        <button class="key" data-key="1">1</button>
+        <button class="key" data-key="2">2</button>
+        <button class="key" data-key="3">3</button>
+
+        <button class="key" data-key="4">4</button>
+        <button class="key" data-key="5">5</button>
+        <button class="key" data-key="6">6</button>
+
+        <button class="key" data-key="7">7</button>
+        <button class="key" data-key="8">8</button>
+        <button class="key" data-key="9">9</button>
+
+        <button class="key action" id="clear">C</button>
+        <button class="key" data-key="0">0</button>
+        <button class="key action" id="back">&larr;</button>
+      </div>
+
+      <div class="lock-actions">
+        <button id="submit-pin" class="btn submit">Unlock</button>
+      </div>
+
+      <div id="pin-msg" class="pin-msg" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+        </html>

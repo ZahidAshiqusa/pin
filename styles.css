@@ -1,0 +1,221 @@
+:root{
+  --bg:#04060a;
+  --panel:#071021;
+  --neon1: #00ffd5;
+  --neon2: #ff2d95;
+  --neon3: #7c6bff;
+  --neon4: #00d2ff;
+  --glass: rgba(255,255,255,0.03);
+  --glass-2: rgba(255,255,255,0.02);
+  --accent: #00ffd5;
+  --text: #e6f7ff;
+  --muted: #9fb2c8;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(ellipse at 10% 10%, rgba(4,6,10,1) 0%, rgba(3,5,8,1) 35%), var(--bg);
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+}
+
+/* Page layout */
+.page{
+  width:100%;
+  max-width:980px;
+  text-align:center;
+}
+
+.brand h1{
+  margin:0;
+  font-weight:800;
+  letter-spacing:1px;
+  font-size:2rem;
+  text-shadow: 0 0 18px rgba(255,255,255,0.03);
+}
+.subtitle{color:var(--muted); margin:6px 0 26px}
+
+/* Buttons grid */
+.buttons-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+  align-items:center;
+  justify-items:center;
+}
+
+/* Neon button base */
+.neon-btn{
+  width:220px;
+  height:88px;
+  display:inline-grid;
+  place-items:center;
+  text-decoration:none;
+  font-weight:700;
+  border-radius:18px;
+  font-size:1.05rem;
+  letter-spacing:0.6px;
+  transform:translateZ(0);
+  transition:transform .25s ease;
+  position:relative;
+  overflow:visible;
+  user-select:none;
+  cursor: pointer;
+  box-shadow: 0 6px 40px rgba(0,0,0,0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* animated glow layers */
+.neon-btn::before,
+.neon-btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  z-index:-2;
+  filter:blur(18px);
+  opacity:.9;
+}
+
+/* individual color themes */
+.neon-1{ background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(255,255,255,0.02)); color:var(--neon1)}
+.neon-1::before{ box-shadow: 0 0 36px 6px rgba(0,255,213,0.12);}
+.neon-1::after{ box-shadow: 0 0 120px 18px rgba(0,255,213,0.06); transform: translateY(-6px); }
+
+.neon-2{ color:var(--neon2)}
+.neon-2::before{ box-shadow: 0 0 36px 6px rgba(255,45,149,0.12);}
+.neon-2::after{ box-shadow: 0 0 120px 18px rgba(255,45,149,0.06); transform: translateY(-6px); }
+
+.neon-3{ color:var(--neon3)}
+.neon-3::before{ box-shadow: 0 0 36px 6px rgba(124,107,255,0.12);}
+.neon-3::after{ box-shadow: 0 0 120px 18px rgba(124,107,255,0.06); transform: translateY(-6px); }
+
+.neon-4{ color:var(--neon4)}
+.neon-4::before{ box-shadow: 0 0 36px 6px rgba(0,210,255,0.12);}
+.neon-4::after{ box-shadow: 0 0 120px 18px rgba(0,210,255,0.06); transform: translateY(-6px); }
+
+/* inner border line */
+.neon-btn::after{ z-index:-1; opacity:.9; transition: transform .5s ease; }
+
+/* subtle neon text glow */
+.neon-btn{
+  text-shadow: 0 0 8px rgba(255,255,255,0.05), 0 0 18px currentColor;
+}
+
+/* hover/active animations */
+.neon-btn:hover{ transform: translateY(-6px) scale(1.02) rotate(-0.2deg); }
+.neon-btn:active{ transform: translateY(-2px) scale(.995) }
+
+/* tiny moving gradient overlay for life */
+.neon-btn::before{
+  background: linear-gradient(120deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  animation: sheen 3.8s linear infinite;
+}
+@keyframes sheen {
+  0%{ transform: translateX(-40%) }
+  50%{ transform: translateX(40%) }
+  100%{ transform: translateX(-40%) }
+}
+
+/* overlay / lock styles */
+.overlay{
+  position:fixed;
+  inset:0;
+  display:grid;
+  place-items:center;
+  z-index:999;
+  transition:opacity .25s ease, visibility .25s;
+}
+.overlay.active{ background: linear-gradient(180deg, rgba(2,4,8,0.7), rgba(2,4,8,0.85)); visibility:visible; opacity:1; }
+.overlay:not(.active){ visibility:hidden; opacity:0; pointer-events:none; }
+
+.lock-card{
+  width:340px;
+  border-radius:16px;
+  padding:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  text-align:center;
+}
+
+.lock-header{ margin-bottom:12px; }
+.lock-title{ font-weight:700; font-size:1.1rem; }
+.lock-sub{ font-size:.85rem; color:var(--muted) }
+
+.pin-display{ display:flex; gap:12px; justify-content:center; margin:8px 0 12px; height:34px; align-items:center }
+.dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:transparent;
+  border:2px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 8px rgba(0,0,0,0.6) inset;
+  transition:background .12s linear, box-shadow .12s;
+}
+.dot.filled{ background: currentColor; box-shadow: 0 0 18px currentColor; color:var(--accent) }
+
+/* keypad grid */
+.keypad{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:12px;
+  padding:10px 6px;
+  margin-top:2px;
+}
+.key{
+  height:58px;
+  border-radius:50%;
+  border: none;
+  outline: none;
+  font-size:1.05rem;
+  font-weight:700;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  color:var(--text);
+  cursor:pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  transition: transform .12s ease, box-shadow .12s ease;
+  position:relative;
+  text-shadow: 0 0 10px rgba(255,255,255,0.02);
+}
+.key:active{ transform: scale(.98) }
+.key.action{ border-radius:14px; height:46px; font-weight:800; }
+
+/* submit */
+.lock-actions{ margin-top:12px }
+.btn.submit{
+  padding:10px 18px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+  color:var(--text);
+}
+
+/* message */
+.pin-msg{ margin-top:8px; font-size:.9rem; color:#ff6b6b; height:20px; }
+
+/* shake animation for wrong pin */
+@keyframes shake {
+  10%,90%{ transform: translateX(-2px) }
+  20%,80%{ transform: translateX(4px) }
+  30%,50%,70%{ transform: translateX(-6px) }
+  40%,60%{ transform: translateX(6px) }
+}
+
+.lock-card.shake{ animation: shake .6s linear; }
+
+/* Responsive */
+@media (max-width:480px){
+  .neon-btn{ width:160px; height:74px; font-size:.95rem }
+  .lock-card{ width:92% }
+  }

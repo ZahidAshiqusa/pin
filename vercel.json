@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "functions": {
-    "api/check-pin.js": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 5
-    }
-  }
-}

@@ -1,0 +1,21 @@
+{
+  "name": "Neon Buttons - Protected",
+  "short_name": "NeonLock",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#04060a",
+  "theme_color": "#00ffd5",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "description": "Stylish neon buttons with PIN protection via Vercel API."
+}
